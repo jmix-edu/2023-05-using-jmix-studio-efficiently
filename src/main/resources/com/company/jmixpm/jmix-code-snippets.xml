@@ -1,0 +1,40 @@
+<jmixCodeSnippets xmlns="http://jmix.io/schema/core/code-snippets">
+    <category name="Jmix PM">
+        <codeSnippet name="Load least busy user" contextTypes="service,controller">
+            <inject variable="taskService" classQualifiedName="com.company.jmixpm.app.TaskService"/>
+
+            <text language="java">
+                com.company.jmixpm.entity.User leastBusyUser = taskService.findLeastBusyUser();
+            </text>
+
+            <description>
+                <![CDATA[Gets least busy user]]>
+            </description>
+        </codeSnippet>
+
+        <codeSnippet name="Load project by current authenticated manager" contextTypes="service,controller">
+            <inject variable="dataManager" classQualifiedName="io.jmix.core.DataManager"/>
+            <text language="java">
+                java.util.List&lt;com.company.jmixpm.entity.Project&gt; list = dataManager.load(com.company.jmixpm.entity.Project.class)
+                .query("select p from Project p where p.manager.id = :current_user_id")
+                .list();
+            </text>
+            <description>Load project by current authenticated manager</description>
+        </codeSnippet>
+
+        <codeSnippet name="Show tray notification" contextTypes="controller">
+            <inject variable="notifications" classQualifiedName="io.jmix.ui.Notifications"/>
+            <text language="java">
+                notifications.create(Notifications.NotificationType.TRAY)
+                .withCaption("${caption}")
+                .withDescription("${description}")
+                .show();
+            </text>
+            <description>
+                Show tray notification
+            </description>
+            <stringInputParameter code="caption" text="Notification caption"/>
+            <stringInputParameter code="description" text="Notification description"/>
+        </codeSnippet>
+    </category>
+</jmixCodeSnippets>
