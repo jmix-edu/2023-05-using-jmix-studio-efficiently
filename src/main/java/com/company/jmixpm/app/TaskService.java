@@ -2,14 +2,21 @@ package com.company.jmixpm.app;
 
 import com.company.jmixpm.entity.User;
 import io.jmix.core.DataManager;
+import io.jmix.core.FileStorage;
+import io.jmix.core.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TaskService {
 
-    @Autowired
-    private DataManager dataManager;
+    protected final Resources resources;
+    private final DataManager dataManager;
+
+    public TaskService(DataManager dataManager, Resources resources) {
+        this.dataManager = dataManager;
+        this.resources = resources;
+    }
 
     public User findLeastBusyUser() {
         return dataManager.loadValues("select u, count(t.id) " +

@@ -5,7 +5,14 @@
     <data readOnly="true">
         <collection id="usersDc"
                     class="com.company.jmixpm.entity.User">
-            <fetchPlan extends="_base"/>
+            <fetchPlan>
+                <property name="username"/>
+                <property name="firstName"/>
+                <property name="lastName"/>
+                <property name="email"/>
+                <property name="timeZoneId"/>
+                <property name="active"/>
+            </fetchPlan>
             <loader id="usersDl">
                 <query>
                     <![CDATA[select e from User e order by e.username]]>

@@ -37,6 +37,7 @@
                 dataLoader="projectsDl">
             <properties include=".*"/>
         </filter>
+
         <groupTable id="projectsTable"
                     width="100%"
                     dataContainer="projectsDc">
